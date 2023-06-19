@@ -1,11 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Header from './component/Header/Header';
+import { Link, Outlet } from 'react-router-dom';
 
 const App = () => {
     return (
-        <div className="App">
-            <Header />
+        <div className="app-container">
+            <div className="header-container">
+                <Header />
+            </div>
+            <div className="main-container">
+                <div className="sidenav-container"></div>
+                <div className="app-content">
+                    <Outlet />
+                </div>
+            </div>
         </div>
     );
 };
