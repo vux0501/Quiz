@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;500;600&display=swap');
+
 body {
     padding: 0;
     margin: 0;
@@ -7,14 +9,76 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+@media (min-width: 1350px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1800px !important;
+    }
+}
+
 .app-container {
     .header-container {
-        .navbar-nav {
-            .nav-link {
-                &.active {
-                    color: #00bfff;
-                }
+        font-family: 'Teko', sans-serif;
+        .btn-signup {
+            font-size: 26px;
+            font-weight: 500;
+            color: rgb(38, 38, 39);
+            border-radius: 4px;
+            padding: 0px 24px;
+            background: transparent;
+            border-width: 2px;
+            border-style: solid;
+            border-color: rgb(38, 38, 39);
+            margin-right: 15px;
+            height: 40px;
+            &:hover {
+                cursor: pointer;
             }
         }
+
+        .btn-login {
+            font-size: 26px;
+            font-weight: 500;
+            color: rgb(255, 255, 255);
+            border-radius: 4px;
+            transition: background-color 0.2s ease-out 0s, border-color, color, opacity;
+            padding: 0px 24px;
+            background: rgb(38, 38, 39);
+            border-width: 2px;
+            border-style: solid;
+            border-color: rgb(38, 38, 39);
+            height: 40px;
+
+            &:hover {
+                cursor: pointer;
+                background: black;
+            }
+        }
+
+        .navbar {
+            z-index: 2;
+            background-color: #feb916d4 !important;
+            .nav-link {
+                padding: 0 16px;
+                font-weight: 600;
+                font-size: 24px;
+
+                &.active {
+                    color: #1f90b1;
+                }
+            }
+            .navbar-brand {
+                font-weight: 600;
+                font-size: 36px;
+            }
+        }
+    }
+    .background_homepage {
+        width: 100vw;
+        bottom: 0;
+        position: fixed;
     }
 }
