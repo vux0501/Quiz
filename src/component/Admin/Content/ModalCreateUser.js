@@ -6,12 +6,20 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { Image } from 'react-bootstrap';
 import React from 'react';
+import axios from 'axios';
 
-const ModalCreateUser = () => {
-    const [show, setShow] = useState(false);
+const ModalCreateUser = (props) => {
+    const { show, setShow } = props;
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => {
+        setEmail('');
+        setPassword('');
+        setUsername('');
+        setRole('USER');
+        setImage('');
+        setPreviewImage('');
+        setShow(false);
+    };
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,12 +37,32 @@ const ModalCreateUser = () => {
         }
     };
 
+    const handleSubmitCreateUser = async () => {
+        //valid
+
+        //call api
+        // let data = {
+        //     email: email,
+        //     password: password,
+        //     username: username,
+        //     role: role,
+        //     userImage: image,
+        // };
+        // console.log(data);
+
+        const data = new FormData();
+        data.append('email', email);
+        data.append('password', password);
+        data.append('username', username);
+        data.append('role', role);
+        data.append('userImage', image);
+
+        let res = await axios.post('http://localhost:8081/api/v1/participant', data);
+        console.log(res);
+    };
+
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Create user
-            </Button>
-
             <Modal className="modal-create-user" backdrop="static" size="xl" show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add new user</Modal.Title>
@@ -84,7 +112,6 @@ const ModalCreateUser = () => {
                         </Row>
 
                         <Form.Group controlId="formFile" className="mb-3">
-                            {previewImage}
                             <Form.Label>Avatar</Form.Label>
                             <Form.Control type="file" onChange={(event) => handleUploadImage(event)} />
                         </Form.Group>
@@ -99,7 +126,7 @@ const ModalCreateUser = () => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={() => handleSubmitCreateUser()}>
                         Save
                     </Button>
                 </Modal.Footer>
