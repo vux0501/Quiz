@@ -1,0 +1,29 @@
+.manage-user-container {
+    .user-content {
+    }
+}
+
+.modal-create-user {
+    .avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .img-preview {
+        width: 150px;
+        height: 150px;
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ccc;
+
+        img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+    }
+}
