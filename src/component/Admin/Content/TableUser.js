@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 
 const TableUser = (props) => {
-    const { listUsers, handleClickBtnUpdate } = props;
+    const { listUsers, handleClickBtnUpdate, handleClickBtnView } = props;
 
     return (
         <>
@@ -28,7 +28,9 @@ const TableUser = (props) => {
                                     <td>{item.email}</td>
                                     <td>{item.role}</td>
                                     <td>
-                                        <Button variant="dark">View</Button>
+                                        <Button variant="dark" onClick={() => handleClickBtnView(item)}>
+                                            View
+                                        </Button>
                                         <Button
                                             variant="warning"
                                             className="mx-3"

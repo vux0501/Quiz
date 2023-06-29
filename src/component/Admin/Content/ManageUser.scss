@@ -38,3 +38,24 @@
         }
     }
 }
+
+.modal-view-user {
+    .avatar {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin: 12px 0;
+        border: 2px solid black;
+    }
+    .card {
+        margin: auto;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
