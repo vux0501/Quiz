@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Col from 'react-bootstrap/Col';
@@ -6,13 +6,14 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { Image } from 'react-bootstrap';
 import React from 'react';
+import _ from 'lodash';
 
 import { toast } from 'react-toastify';
 
 import { postCreateNewUser } from '../../../services/apiServices';
 
-const ModalCreateUser = (props) => {
-    const { show, setShow, fetchListUsers } = props;
+const ModelUpdateUser = (props) => {
+    const { show, setShow, fetchListUsers, dataUpdate } = props;
 
     const handleClose = () => {
         setEmail('');
@@ -30,6 +31,19 @@ const ModalCreateUser = (props) => {
     const [role, setRole] = useState('USER');
     const [image, setImage] = useState('');
     const [previewImage, setPreviewImage] = useState('');
+
+    useEffect(() => {
+        if (!_.isEmpty(dataUpdate)) {
+            setEmail(dataUpdate.email);
+            setUsername(dataUpdate.username);
+            setRole(dataUpdate.role);
+            console.log(dataUpdate.username);
+
+            if (dataUpdate.image) {
+                setPreviewImage(`data:image/jpge;base64,${dataUpdate.image}`);
+            }
+        }
+    }, [dataUpdate]);
 
     const handleUploadImage = (event) => {
         if (event.target && event.target.files && event.target.files[0]) {
@@ -77,7 +91,7 @@ const ModalCreateUser = (props) => {
         <>
             <Modal className="modal-create-user" backdrop="static" size="xl" show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add new user</Modal.Title>
+                    <Modal.Title>Update user info</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -89,6 +103,7 @@ const ModalCreateUser = (props) => {
                                     placeholder="Email"
                                     value={email}
                                     onChange={(event) => setEmail(event.target.value)}
+                                    disabled
                                 />
                             </Form.Group>
 
@@ -97,8 +112,9 @@ const ModalCreateUser = (props) => {
                                 <Form.Control
                                     type="password"
                                     placeholder="Password"
-                                    value={password}
+                                    value={'******'}
                                     onChange={(event) => setPassword(event.target.value)}
+                                    disabled
                                 />
                             </Form.Group>
                         </Row>
@@ -107,6 +123,7 @@ const ModalCreateUser = (props) => {
                             <Form.Group as={Col} controlId="formGridUsername">
                                 <Form.Label>Username</Form.Label>
                                 <Form.Control
+                                    type="text"
                                     placeholder="Username"
                                     value={username}
                                     onChange={(event) => setUsername(event.target.value)}
@@ -115,7 +132,7 @@ const ModalCreateUser = (props) => {
 
                             <Form.Group as={Col} controlId="formGridRole">
                                 <Form.Label>Role</Form.Label>
-                                <Form.Select defaultValue={'USER'} onChange={(event) => setRole(event.target.value)}>
+                                <Form.Select value={role} onChange={(event) => setRole(event.target.value)}>
                                     <option value={'USER'}>User</option>
                                     <option value={'ADMIN'}>Admin</option>
                                 </Form.Select>
@@ -146,4 +163,4 @@ const ModalCreateUser = (props) => {
     );
 };
 
-export default ModalCreateUser;
+export default ModelUpdateUser;
