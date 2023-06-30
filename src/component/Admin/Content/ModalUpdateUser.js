@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import { putUpdateUser } from '../../../services/apiServices';
 
 const ModelUpdateUser = (props) => {
-    const { show, setShow, fetchListUsers, dataUpdate } = props;
+    const { show, setShow, fetchListUsersWithPaginate, dataUpdate, currentPage } = props;
 
     const handleClose = () => {
         setShow(false);
@@ -56,7 +56,7 @@ const ModelUpdateUser = (props) => {
         if (data && data.EC === 0) {
             toast.success(data.EM);
             handleClose();
-            await fetchListUsers();
+            await fetchListUsersWithPaginate(currentPage);
         }
 
         if (data && data.EC !== 0) {
