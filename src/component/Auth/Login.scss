@@ -1,0 +1,55 @@
+.login-container {
+    .header {
+        height: 45px;
+        border: 1px solid red;
+        padding: 0 100px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+
+        button {
+            border: none;
+            padding: 5px;
+            margin-left: 16px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            border: 1px solid;
+
+            &:hover {
+                background-color: white;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .title {
+        font-size: 24px;
+        padding: 20px 0px;
+        text-align: center;
+        font-weight: 600;
+    }
+    .welcome {
+        font-size: 24px;
+        padding: 10px 0px;
+        text-align: center;
+    }
+    form {
+        margin-top: 4px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        button {
+            margin-top: 4px;
+            width: 80%;
+        }
+    }
+    .btn-back {
+        span {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
