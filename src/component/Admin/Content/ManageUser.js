@@ -2,6 +2,7 @@ import React from 'react';
 import ModalCreateUser from './ModalCreateUser';
 import ModalUpdateUser from './ModalUpdateUser';
 import ModalViewUser from './ModalViewUser';
+import ModalDeleteUser from './ModalDeleteUser';
 import './ManageUser.scss';
 import { FaPlus } from 'react-icons/fa';
 import TableUser from './TableUser';
@@ -12,8 +13,11 @@ const ManageUser = () => {
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [showModalViewUser, setShowModalViewUser] = useState(false);
+    const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
     const [listUsers, setListUsers] = useState([]);
+    const [dataDelete, setDataDelete] = useState({});
+
     useEffect((res) => {
         fetchListUsers();
     }, []);
@@ -35,6 +39,11 @@ const ManageUser = () => {
         setDataUpdate(user);
     };
 
+    const handleClickBtnDelete = (user) => {
+        setShowModalDeleteUser(true);
+        setDataDelete(user);
+    };
+
     return (
         <div className="manage-user-container">
             <div className="title">Manage User</div>
@@ -49,6 +58,7 @@ const ManageUser = () => {
                         listUsers={listUsers}
                         handleClickBtnUpdate={handleClickBtnUpdate}
                         handleClickBtnView={handleClickBtnView}
+                        handleClickBtnDelete={handleClickBtnDelete}
                     />
                 </div>
                 <ModalCreateUser
@@ -63,6 +73,12 @@ const ManageUser = () => {
                     fetchListUsers={fetchListUsers}
                 />
                 <ModalViewUser show={showModalViewUser} setShow={setShowModalViewUser} dataUpdate={dataUpdate} />
+                <ModalDeleteUser
+                    show={showModalDeleteUser}
+                    setShow={setShowModalDeleteUser}
+                    dataDelete={dataDelete}
+                    fetchListUsers={fetchListUsers}
+                />
             </div>
         </div>
     );
