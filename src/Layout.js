@@ -5,7 +5,7 @@ import HomePage from './component/Home/HomePage';
 import ManageUser from './component/Admin/Content/ManageUser';
 import DashBoard from './component/Admin/Content/DashBoard';
 import Login from './component/Auth/Login';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
