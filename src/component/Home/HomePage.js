@@ -1,7 +1,10 @@
 import React from 'react';
 import Background from '../../assets/background_homepage.jpg';
+import { useSelector } from 'react-redux';
 
 const HomePage = (props) => {
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+    const account = useSelector((state) => state.user.account);
     return (
         <div className="homepage-container">
             <img className="background-homepage" src={Background} alt="Background" />

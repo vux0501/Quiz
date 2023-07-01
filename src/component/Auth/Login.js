@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 
 import { useDispatch } from 'react-redux';
+import { doLogin } from '../../redux/action/userAction';
 
 const validateEmail = (email) => {
     return String(email)
@@ -26,7 +27,7 @@ const Login = (props) => {
     const [show, setShow] = useState(false);
     const [inputPasswordType, setInputPasswordType] = useState('password');
 
-    const dispatch = useDispatch;
+    const dispatch = useDispatch();
 
     const handleLogin = async () => {
         let data = await postLogin(email, password);
@@ -49,11 +50,9 @@ const Login = (props) => {
         }
 
         if (data && +data.EC === 0) {
-            dispatch({
-                type: 'FECTH_USER_LOGIN_SUCCESS',
-                payload: data,
-            });
-            toast.success(data.EM);
+            dispatch(doLogin(data));
+            console.log(data.DT.username);
+            toast.success(`Welcome ${data.DT.username}`);
             navigate('/');
         }
 
