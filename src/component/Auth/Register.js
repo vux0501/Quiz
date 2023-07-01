@@ -1,14 +1,12 @@
 import React from 'react';
-import './Login.scss';
+import './Register.scss';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postLogin } from '../../services/apiServices';
+import { postRegister } from '../../services/apiServices';
 import { toast } from 'react-toastify';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-
-import { useDispatch } from 'react-redux';
 
 const validateEmail = (email) => {
     return String(email)
@@ -18,19 +16,17 @@ const validateEmail = (email) => {
         );
 };
 
-const Login = (props) => {
+const Register = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+
     //hide show password
     const [show, setShow] = useState(false);
     const [inputPasswordType, setInputPasswordType] = useState('password');
 
-    const dispatch = useDispatch;
-
-    const handleLogin = async () => {
-        let data = await postLogin(email, password);
-        //valid
+    const handleRegister = async () => {
         const isValidEmail = validateEmail(email);
         //valid
         if (email === '') {
@@ -48,13 +44,15 @@ const Login = (props) => {
             return;
         }
 
+        if (username === '') {
+            toast.error('Please enter your username');
+            return;
+        }
+
+        let data = await postRegister(email, password, username);
         if (data && +data.EC === 0) {
-            dispatch({
-                type: 'FECTH_USER_LOGIN_SUCCESS',
-                payload: data,
-            });
             toast.success(data.EM);
-            navigate('/');
+            navigate('/login');
         }
 
         if (data && +data.EC !== 0) {
@@ -63,18 +61,18 @@ const Login = (props) => {
     };
 
     return (
-        <div className="login-container">
+        <div className="register-container">
             <div className="header">
-                <span>Don't have an account yet?</span>
+                <span>Have an account yet?</span>
                 <button
                     onClick={() => {
-                        navigate('/register');
+                        navigate('/login');
                     }}
                 >
-                    Sign up
+                    Log in
                 </button>
             </div>
-            <div className="title col-4 mx-auto">LOGIN</div>
+            <div className="title col-4 mx-auto">Register</div>
             <div className="welcome col-4 mx-auto">Welcome to VUX Quiz</div>
             <div className="content-form col-4 mx-auto">
                 <Form>
@@ -120,12 +118,21 @@ const Login = (props) => {
                             </div>
                         </Form.Group>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Remember me" />
-                        <Form.Text className="text-muted">Forgot password?</Form.Text>
+
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                            type="text"
+                            onChange={(event) => {
+                                setUsername(event.target.value);
+                            }}
+                            value={username}
+                            placeholder="Username"
+                        />
                     </Form.Group>
-                    <Button variant="primary" className="mx-auto " onClick={() => handleLogin()}>
-                        Login
+
+                    <Button variant="primary" className="mx-auto " onClick={() => handleRegister()}>
+                        Register
                     </Button>
                     <div className="d-flex justify-content-center mt-2 btn-back">
                         <span
@@ -143,4 +150,4 @@ const Login = (props) => {
     );
 };
 
-export default Login;
+export default Register;

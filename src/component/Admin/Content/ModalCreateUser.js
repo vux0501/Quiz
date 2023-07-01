@@ -51,6 +51,7 @@ const ModalCreateUser = (props) => {
     const handleSubmitCreateUser = async () => {
         //valid
         const isValidEmail = validateEmail(email);
+
         if (!isValidEmail) {
             toast.error('Invalid email');
             return;
@@ -129,7 +130,7 @@ const ModalCreateUser = (props) => {
                         </Form.Group>
                     </Form>
                     <div className="avatar">
-                        <div className="img-preview ">
+                        <div className="img-preview">
                             {previewImage ? <Image src={previewImage} roundedCircle /> : <span>Preview Image</span>}
                         </div>
                     </div>
