@@ -13,7 +13,6 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FECTH_USER_LOGIN_SUCCESS:
-            console.log('check', action);
             return {
                 ...state,
                 account: {

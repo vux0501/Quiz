@@ -51,7 +51,6 @@ const Login = (props) => {
 
         if (data && +data.EC === 0) {
             dispatch(doLogin(data));
-            console.log(data.DT.username);
             toast.success(`Welcome ${data.DT.username}`);
             navigate('/');
         }

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 const Header = () => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
     const account = useSelector((state) => state.user.account);
     const navigate = useNavigate();
 
@@ -28,12 +29,27 @@ const Header = () => {
                         <NavLink to="/" className="nav-link">
                             Home
                         </NavLink>
-                        <NavLink to="/user" className="nav-link">
-                            User
-                        </NavLink>
-                        <NavLink to="/admin" className="nav-link">
-                            Admin
-                        </NavLink>
+                        {isAuthenticated && isAuthenticated === true ? (
+                            <div>
+                                {account && account.role === 'ADMIN' ? (
+                                    <></>
+                                ) : (
+                                    <NavLink to="/user" className="nav-link">
+                                        User
+                                    </NavLink>
+                                )}
+
+                                {account && account.role === 'USER' ? (
+                                    <></>
+                                ) : (
+                                    <NavLink to="/admin" className="nav-link">
+                                        Admin
+                                    </NavLink>
+                                )}
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                     </Nav>
                     <Nav>
                         {isAuthenticated === false ? (

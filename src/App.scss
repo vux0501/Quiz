@@ -7,6 +7,7 @@ body {
         'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: transparent;
 }
 
 @media (min-width: 1350px) {
@@ -17,6 +18,9 @@ body {
     .container-xl {
         max-width: 1800px !important;
     }
+}
+html {
+    background-color: #f9f5f6;
 }
 
 .app-container {
