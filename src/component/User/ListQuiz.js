@@ -29,12 +29,12 @@ const ListQuiz = () => {
                                 <Card.Img variant="top" src={`data:image/jpge;base64,${quiz.image}`} />
                             </div>
                             <Card.Body>
-                                <Card.Title>{quiz.id}</Card.Title>
+                                <Card.Title>Quiz #{quiz.id}</Card.Title>
                                 <Card.Text>{quiz.description}</Card.Text>
                                 <Button
                                     variant="primary"
                                     onClick={() => {
-                                        navigate(`/quiz/${quiz.id}`);
+                                        navigate(`/quiz/${quiz.id}`, { state: { quizTitile: quiz.description } });
                                     }}
                                 >
                                     Start
