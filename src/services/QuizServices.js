@@ -4,4 +4,8 @@ const getQuizByUser = () => {
     return axios.get('api/v1/quiz-by-participant');
 };
 
-export { getQuizByUser };
+const getDataQuiz = (id) => {
+    return axios.get(`api/v1/questions-by-quiz?quizId=${id}`);
+};
+
+export { getQuizByUser, getDataQuiz };

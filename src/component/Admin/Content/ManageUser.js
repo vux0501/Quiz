@@ -5,9 +5,8 @@ import ModalViewUser from './ModalViewUser';
 import ModalDeleteUser from './ModalDeleteUser';
 import './ManageUser.scss';
 import { FaPlus } from 'react-icons/fa';
-import TableUser from './TableUser';
 import { useState, useEffect } from 'react';
-import { getAllUsers, getUserWithPaginate } from '../../../services/apiServices';
+import { getUserWithPaginate } from '../../../services/apiServices';
 import TableUserPaginate from './TableUserPaginate';
 
 const ManageUser = () => {
@@ -27,12 +26,12 @@ const ManageUser = () => {
         fetchListUsersWithPaginate(1);
     }, []);
 
-    const fetchListUsers = async () => {
-        let res = await getAllUsers();
-        if (res.EC === 0) {
-            setListUsers(res.DT);
-        }
-    };
+    // const fetchListUsers = async () => {
+    //     let res = await getAllUsers();
+    //     if (res.EC === 0) {
+    //         setListUsers(res.DT);
+    //     }
+    // };
 
     const fetchListUsersWithPaginate = async (page) => {
         let res = await getUserWithPaginate(page, LIMIT_USER);

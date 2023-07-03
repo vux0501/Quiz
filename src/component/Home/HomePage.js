@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const HomePage = (props) => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-    const account = useSelector((state) => state.user.account);
+    // const account = useSelector((state) => state.user.account);
     const navigate = useNavigate();
     return (
         <div className="homepage-container">

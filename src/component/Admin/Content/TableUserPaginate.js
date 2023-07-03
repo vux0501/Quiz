@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { useState, useEffect } from 'react';
+
 import ReactPaginate from 'react-paginate';
 
 const TableUserPaginate = (props) => {

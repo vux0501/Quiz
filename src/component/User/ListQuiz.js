@@ -4,8 +4,10 @@ import Card from 'react-bootstrap/Card';
 import { useEffect } from 'react';
 import { getQuizByUser } from '../../services/QuizServices';
 import './ListQuiz.scss';
+import { useNavigate } from 'react-router-dom';
 
 const ListQuiz = () => {
+    const navigate = useNavigate();
     const [arrQuiz, setArrQuizz] = useState([]);
     useEffect(() => {
         getQuizData();
@@ -29,7 +31,14 @@ const ListQuiz = () => {
                             <Card.Body>
                                 <Card.Title>{quiz.id}</Card.Title>
                                 <Card.Text>{quiz.description}</Card.Text>
-                                <Button variant="primary">Start</Button>
+                                <Button
+                                    variant="primary"
+                                    onClick={() => {
+                                        navigate(`/quiz/${quiz.id}`);
+                                    }}
+                                >
+                                    Start
+                                </Button>
                             </Card.Body>
                         </Card>
                     );
