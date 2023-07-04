@@ -6,7 +6,7 @@ const Question = (props) => {
     const { data, index } = props;
     const handleCheckbox = (event, idAnswer, idQuestion) => {
         data.answers.isSelected = true;
-        console.log(data, idAnswer, idQuestion);
+
         props.handleCheckbox(idAnswer, idQuestion);
     };
     if (_.isEmpty(data)) {

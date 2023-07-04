@@ -1,0 +1,41 @@
+.body-result {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+    .correct-answer-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .correct-answer {
+            padding: 1px 10px;
+            border: 2px solid #393646;
+            background-color: #f4eee0;
+        }
+    }
+    .score-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .score {
+            padding: 1px 10px;
+            border: 2px solid #393646;
+            background-color: #f4eee0;
+        }
+    }
+    .pass-fail {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+        font-weight: 800;
+        padding: 50px 0px;
+        .pass {
+            color: green;
+        }
+        .fail {
+            color: red;
+        }
+    }
+}
