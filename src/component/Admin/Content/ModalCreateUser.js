@@ -126,7 +126,11 @@ const ModalCreateUser = (props) => {
 
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Avatar</Form.Label>
-                            <Form.Control type="file" onChange={(event) => handleUploadImage(event)} />
+                            <Form.Control
+                                accept="image/png, image/jpeg"
+                                type="file"
+                                onChange={(event) => handleUploadImage(event)}
+                            />
                         </Form.Group>
                     </Form>
                     <div className="avatar">

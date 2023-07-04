@@ -26,3 +26,9 @@
         }
     }
 }
+
+.logo-container {
+    &:hover {
+        cursor: pointer;
+    }
+}

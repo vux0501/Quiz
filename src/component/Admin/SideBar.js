@@ -5,10 +5,11 @@ import { FaGem, FaGithub } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
 import { DiReact } from 'react-icons/di';
 import { MdDashboard } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SideBar = (props) => {
     const { collapsed, toggled, handleToggleSidebar } = props;
+    const navigate = useNavigate();
     return (
         <>
             <ProSidebar
@@ -31,8 +32,10 @@ const SideBar = (props) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        <DiReact size={'3em'} color="00bfff" />
-                        <span>VUX Quiz</span>
+                        <div onClick={() => navigate('/')} className="logo-container">
+                            <DiReact size={'3em'} color="00bfff" />
+                            <span>VUX Quiz</span>
+                        </div>
                     </div>
                 </SidebarHeader>
 
@@ -53,7 +56,10 @@ const SideBar = (props) => {
                                 Quản lý người dùng
                                 <Link to="/admin/manage-user" />
                             </MenuItem>
-                            <MenuItem>Quản lý bài thi</MenuItem>
+                            <MenuItem>
+                                Quản lý bài thi
+                                <Link to="/admin/manage-quiz" />
+                            </MenuItem>
                             <MenuItem>Quản lý câu hỏi</MenuItem>
                         </SubMenu>
                     </Menu>

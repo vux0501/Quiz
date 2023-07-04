@@ -59,6 +59,7 @@ const ManageUser = () => {
     return (
         <div className="manage-user-container">
             <div className="title">Manage User</div>
+            <hr />
             <div className="user-content">
                 <div className="btn-add-new">
                     <button className="btn btn-primary" onClick={() => setShowModalCreateUser(true)}>
